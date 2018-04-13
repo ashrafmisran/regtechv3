@@ -34,7 +34,7 @@
 	  							</div>
 	  						</div>
 	  						<a class="btn mb-1 btn-primary" href="generate-reply-email.php?to=<?php echo $row['reply_to'] ?>&cc=<?php echo $row['reply_cc'] ?>&subject=<?php echo $row['email_subject'] ?>&emaildate=<?php echo $row['receive_date'] ?>" target="_blank">Generate Email</a>
-	  						<button class="btn mb-1 btn-primary">Upload replied email</button>
+	  						<button class="btn mb-1 btn-primary" data-toggle="modal" data-target="#modal-upload-replied-email" data-id="<?php echo $row['order_id']; ?>" data-email-date="<?php echo $row['receive_date']; ?>">Upload replied email</button>
 	  						<button class="btn mb-1 btn-danger"><i class="fas fa-trash-alt"></i></button>
 	  						<button class="btn mb-1 btn-danger">Confirm delete</button>
 	  						<button class="btn mb-1 btn-primary">Cancel</button>
@@ -53,3 +53,4 @@
 
 </div>
 <?php include 'modal-add-order.php'; ?>
+<?php include 'modal-upload-replied-email.php'; ?>
