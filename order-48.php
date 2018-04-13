@@ -23,13 +23,17 @@
 	  								<label>Files</label>
 	  							</div>
 	  							<div class="col">
-	  								<select class="form-control">
-	  									<?php $ ?>
-	  									<option></option>
+	  								<select class="form-control" onchange="window.open(this.value,'_blank')">
+	  									<option selected disabled>Choose to view...</option>
+	  									<?php 
+	  										$folder = 'docs/amla/' .substr($row['receive_date'],0,4). '/' .substr($row['receive_date'],5,2). '/' .substr($row['receive_date'],8,2). '/' .$row['order_id']. '/';
+	  										$files = scandir($folder); foreach($files as $file){ if($file == '..' OR $file =='.'){ continue; } ?>
+	  											<option value="<?php echo $folder.$file ?>"><?php echo $file; ?></option>
+	  									<?php } ?>
 	  								</select>
 	  							</div>
 	  						</div>
-	  						<button class="btn mb-1 btn-primary">Generate Email</button>
+	  						<a class="btn mb-1 btn-primary" href="generate-reply-email.php?to=<?php echo $row['reply_to'] ?>&cc=<?php echo $row['reply_cc'] ?>&subject=<?php echo $row['email_subject'] ?>&emaildate=<?php echo $row['receive_date'] ?>" target="_blank">Generate Email</a>
 	  						<button class="btn mb-1 btn-primary">Upload replied email</button>
 	  						<button class="btn mb-1 btn-danger"><i class="fas fa-trash-alt"></i></button>
 	  						<button class="btn mb-1 btn-danger">Confirm delete</button>
@@ -49,4 +53,3 @@
 
 </div>
 <?php include 'modal-add-order.php'; ?>
-<?php include 'modal-generate-email.php'; ?>

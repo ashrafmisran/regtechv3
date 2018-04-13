@@ -10,6 +10,7 @@
 	echo('</textarea>');*/
 	
 	// Set variable
+		$email_subject  = $_FILES['email']['name'];
 		$location		= $_POST['location'];
 		$receive_date	= substr($_POST['email-date'],6,4)   .'-'.  substr($_POST['email-date'],3,2)   .'-'.  substr($_POST['email-date'],0,2);
 		$reply_to		= implode(';', $_POST['reply-to']);
@@ -29,8 +30,8 @@
 
 
 	// Insert into database
-		$sql = "INSERT INTO order_48 (order_date,orderer,location,receive_date,no_of_indvdl,no_of_comp,reply_to,reply_cc)
-					VALUES ('$order_date','$orderer[1]','$location','$receive_date',$no_of_indvdl[1],$no_of_comp[1],'$reply_to','$reply_cc')";
+		$sql = "INSERT INTO order_48 (order_date,orderer,email_subject,location,receive_date,no_of_indvdl,no_of_comp,reply_to,reply_cc)
+					VALUES ('$order_date','$orderer[1]','$email_subject','$location','$receive_date',$no_of_indvdl[1],$no_of_comp[1],'$reply_to','$reply_cc')";
 		$run = $conn->query($sql);
 		$id 			= $conn->insert_id;
 
