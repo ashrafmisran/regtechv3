@@ -16,7 +16,7 @@
 		  		<div class="col-md-6">
 	  				<div class="card mb-4">
 	  					<div class="card-block m-2">
-	  						<h4 class="card-title">ORD-<?php echo $row['order_id'] ?></h4>
+	  						<h4 class="card-title">ORD-<?php echo $row['order_id'] ?> <small class="badge badge-success text-sm"><?php echo $row['status'] ?></small></h4>
 	  						<p class="card-text">Order by <span class="badge badge-secondary"><?php echo($row['orderer']) ?></span> on <span class="badge badge-secondary"><?php echo($row['order_date']) ?></span>.<br>Email received on <span class="badge badge-secondary"><?php echo($row['receive_date']) ?></span>.</p>
 	  						<div class="row mb-2">
 	  							<div class="col-3">
