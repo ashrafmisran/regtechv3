@@ -4,9 +4,12 @@
 *.msg
 *.eml
 *.xls
+<<<<<<< HEAD
 *.pdf
 *.pdf
 *.pdf
+=======
 *.msg
 *.pdf
 *.xlsx
+>>>>>>> master
