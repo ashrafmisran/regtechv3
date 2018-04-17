@@ -26,7 +26,7 @@
 	  								<select class="form-control" onchange="window.open(this.value,'_blank')">
 	  									<option selected disabled>Choose to view...</option>
 	  									<?php 
-	  										$folder = 'docs/amla/' .substr($row['receive_date'],0,4). '/' .substr($row['receive_date'],5,2). '/' .substr($row['receive_date'],8,2). '/' .$row['order_id']. '/';
+	  										$folder = 'docs/amla/ORDER/' .substr($row['receive_date'],0,4). '/' .substr($row['receive_date'],5,2). '/' .substr($row['receive_date'],8,2). '/' .$row['order_id']. '/';
 	  										$files = scandir($folder); foreach($files as $file){ if($file == '..' OR $file =='.'){ continue; } ?>
 	  											<option value="<?php echo $folder.$file ?>"><?php echo $file; ?></option>
 	  									<?php } ?>
