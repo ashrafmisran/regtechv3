@@ -19,7 +19,7 @@
 		$run = $conn->query($sql);
 
 	// Upload to folder
-		$folder			= 'docs/amla/' . substr($email_date,0,4) .'/'. substr($email_date,5,2) .'/'. substr($email_date,8,2) .'/'. $order_id .'/';
+		$folder			= 'docs/amla/ORDER/' . substr($email_date,0,4) .'/'. substr($email_date,5,2) .'/'. substr($email_date,8,2) .'/'. $order_id .'/';
 		make_directory($folder);
 
 		// Upload email
