@@ -4,7 +4,16 @@
 *.msg
 *.eml
 *.xls
+<<<<<<< HEAD
+*.pdf
+*.pdf
+*.pdf
+=======
 *.msg
 *.pdf
 *.xlsx
+<<<<<<< HEAD
+=======
+>>>>>>> master
+>>>>>>> Upload-report
 *.doc
