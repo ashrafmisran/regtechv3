@@ -3,8 +3,8 @@
 
 	$to 			= $_GET['to'];
 	$cc 			= $_GET['cc'];
-	/*$subject	= */  preg_match('/(Section 48.*)(?:\.msg)/', $_GET['subject'], $subject);
-	/*$replyTo = */   preg_match('/(Order dated.*)(?:\.msg)/', $_GET['subject'], $replyTo);
+	/*$subject	= */  preg_match('/(Section 48.*)/', $_GET['subject'], $subject);
+	/*$replyTo = */   preg_match('/(Order dated.*)/', $_GET['subject'], $replyTo);
 	$orderReceived 	= $_GET['emaildate'];
 	$senderName		= $_SESSION['user']['fullname'];
 	$senderPosition	= $_SESSION['user']['position'];

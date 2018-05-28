@@ -10,7 +10,7 @@
 	echo('</textarea>');*/
 	
 	// Set variable
-		$order_id 		= $_POST['order-id'];
+		$order_id 		= substr($_POST['order-id'], -5)-10000 ;
 		$email_subject  = $_FILES['email']['name'];
 		$email_date 	= $_POST['email-date'];
 
@@ -23,12 +23,7 @@
 		make_directory($folder);
 
 		// Upload email
-		move_uploaded_file($_FILES['email']['tmp_name'], $folder.'3 - '.$_FILES['email']['name']);
-
-		// Upload attachment
-		for ($i=0; $i < count($_FILES['attachment']['name']); $i++) { 
-			move_uploaded_file($_FILES['attachment']['tmp_name'][$i], $folder.'2 - '.$_FILES['attachment']['name'][$i]);
-		}
+		move_uploaded_file($_FILES['email']['tmp_name'], $folder.'2 - Email Replied.pdf');
 
 
 	header('Location: '.$_SERVER['HTTP_REFERER']);

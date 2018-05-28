@@ -40,4 +40,10 @@
 		},
 		placeholder: 'Please choose...'
 	});
+
+	$('.datatable').DataTable();
+
+	$(function () {
+	  $('.has-tooltip').tooltip()
+	})
 </script>

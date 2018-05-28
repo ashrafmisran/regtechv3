@@ -14,7 +14,7 @@
 						<label>Report Date</label>
 					</div>
 					<div class="col-md-9">
-						<input class="singledatepicker form-control" type="text" name="email-date" required>
+						<input class="singledatepicker form-control" type="text" name="report-date" required>
 					    <small class="form-text text-muted mb-2">The date when the report is generated.</small>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 					</div>
 					<div class="col-md-9">
 						<select class="select2 form-control" multiple name="order-id[]">
-							<?php $run = $conn->query('SELECT * FROM order_48 WHERE status = "Replied"'); while ( $row = $run->fetch_assoc() ){ ?>
+							<?php $run = $conn->query('SELECT * FROM order_48 WHERE status = "Replied" ORDER BY order_id DESC'); while ( $row = $run->fetch_assoc() ){ ?>
 								<option value="<?php echo $row['order_id'] ?>">ORD-<?php echo $row['order_id'] ?></option>
 							<?php } ?>
 						</select>

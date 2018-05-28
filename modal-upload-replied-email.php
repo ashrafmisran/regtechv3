@@ -30,7 +30,7 @@
 						<label>Email</label>
 					</div>
 					<div class="col-md-9">
-						<input type="file" name="email" class="form-control" accept=".msg">
+						<input type="file" name="email" class="form-control" accept=".pdf">
 					</div>
 				</div>
 			</div>
