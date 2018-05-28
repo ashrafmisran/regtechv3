@@ -50,7 +50,7 @@
 	  				<td><?php echo $row['remark'] ?></td>
 	  				<td><?php echo $row['status'] ?></td>
 	  				<td width="150px">
-	  					<a class="btn btn-sm btn-outline-primary has-tooltip" href="generate-reply-email.php?to=<?php echo $row['reply_to'] ?>&cc=<?php echo $row['reply_cc'] ?>&subject=<?php echo $row['email_subject'] ?>&emaildate=<?php echo $row['receive_date'] ?>" title="Download draft email"><i class="fas fa-download"></i></a>
+	  					<a class="btn btn-sm btn-outline-primary has-tooltip" href="generate-reply-email.php?to=<?php echo $row['reply_to'] ?>&cc=<?php echo $row['reply_cc'] ?>&subject=<?php echo urlencode( str_replace(':', '', $row['email_subject']) ) ?>&emaildate=<?php echo $row['receive_date'] ?>" title="Download draft email"><i class="fas fa-download"></i></a>
 	  					<button class="btn btn-sm btn-outline-primary has-tooltip" data-toggle="modal" title="Upload replied email" data-target="#modal-upload-replied-email" data-id="ORD<?php echo 10000+$row['order_id']; ?>" data-email-date="<?php echo $row['receive_date']; ?>""><i class="fas fa-upload"></i></button>
 	  					<button class="btn btn-sm btn-outline-danger has-tooltip" data-toggle="modal" title="Delete order" data-target="#modal-delete-order-<?php echo $row['order_id'] ?>"><i class="fas fa-trash-alt"></i></button>
 	  				</td>

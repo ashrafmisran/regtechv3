@@ -32,8 +32,8 @@
 					</div>
 					<div class="col-md-9">
 						<select class="select2 form-control" multiple name="order-id[]">
-							<?php $run = $conn->query('SELECT * FROM order_48 WHERE status = "Replied" ORDER BY order_id DESC'); while ( $row = $run->fetch_assoc() ){ ?>
-								<option value="<?php echo $row['order_id'] ?>">ORD-<?php echo $row['order_id'] ?></option>
+							<?php $run = $conn->query('SELECT * FROM order_48 WHERE status = "Replied" OR status = "Fresh" ORDER BY order_id DESC'); while ( $row = $run->fetch_assoc() ){ ?>
+								<option value="<?php echo $row['order_id'] ?>">ORD<?php echo 10000+$row['order_id'] ?></option>
 							<?php } ?>
 						</select>
 					</div>
