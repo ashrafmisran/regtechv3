@@ -1,8 +1,8 @@
-<div class="modal fade" id="modal-upload-replied-email">
+<div class="modal fade" id="modal-upload-order-report">
 	<div class="modal-dialog modal-lg" role="document">
-		<form action="action-upload-replied-email.php" method="post" class="modal-content" enctype="multipart/form-data">
+		<form action="action-upload-order-report.php" method="post" class="modal-content" enctype="multipart/form-data">
 			<div class="modal-header">
-				<h4 class="modal-title">Upload replied email</h4>
+				<h4 class="modal-title">Upload AMLA008 Report</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
@@ -11,26 +11,39 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-3">
-						<label>Order ID</label>
+						<label>Report Date</label>
 					</div>
 					<div class="col-md-9">
-						<input id="input-order-id" class="form-control mb-1" type="text" name="order-id" readonly>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<label>Email Date</label>
-					</div>
-					<div class="col-md-9">
-						<input id="input-email-date" class="form-control mb-1" type="text" name="email-date" readonly>
+						<input class="singledatepicker form-control" type="text" name="report-date" required>
+					    <small class="form-text text-muted mb-2">The date when the report is generated.</small>
 					</div>
 				</div>
 				<div class="row mb-1">
 					<div class="col-md-3">
-						<label>Email</label>
+						<label>AMLA008 Report</label>
 					</div>
 					<div class="col-md-9">
-						<input type="file" name="email" class="form-control" accept=".pdf">
+						<input type="file" name="report" class="form-control" accept=".pdf" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label>Order ID</label>
+					</div>
+					<div class="col-md-9">
+						<select class="select2 form-control" multiple name="order-id[]">
+							<?php $run = $conn->query('SELECT * FROM order_48 WHERE status = "Replied" OR status = "Fresh" ORDER BY order_id DESC'); while ( $row = $run->fetch_assoc() ){ ?>
+								<option value="<?php echo $row['order_id'] ?>">ORD<?php echo 10000+$row['order_id'] ?></option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col-md-3">
+						<label>Remark</label>
+					</div>
+					<div class="col-md-9">
+						<textarea class="form-control" name="remark">No exception</textarea>
 					</div>
 				</div>
 			</div>

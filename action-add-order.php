@@ -10,15 +10,15 @@
 	echo('</textarea>');*/
 	
 	// Set variable
-		$email_subject  = $_FILES['email']['name'];
+		$email_subject  = $_POST['title'];
 		$location		= $_POST['location'];
 		$receive_date	= substr($_POST['email-date'],6,4)   .'-'.  substr($_POST['email-date'],3,2)   .'-'.  substr($_POST['email-date'],0,2);
 		$reply_to		= implode(';', $_POST['reply-to']);
 		$reply_cc		= implode(';', $_POST['cc-to']);
-						  preg_match('/dated\s([0-9]{1,2}\s\b.*\b\s[0-9]{4})/', $_FILES['email']['name'], $order_date);
-						  preg_match('/\((.*)\)/', $_FILES['email']['name'], $orderer);
-						  preg_match('/([0-9]*)\sindividual/', $_FILES['email']['name'], $no_of_indvdl);
-						  preg_match('/([0-9]*)\scompa/', $_FILES['email']['name'], $no_of_comp);
+						  preg_match('/dated\s([0-9]{1,2}\s\b.*\b\s[0-9]{4})/', $_POST['title'], $order_date);
+						  preg_match('/\((.*)\)/', $_POST['title'], $orderer);
+						  preg_match('/([0-9]*)\sindividual/', $_POST['title'], $no_of_indvdl);
+						  preg_match('/([0-9]*)\scompa/', $_POST['title'], $no_of_comp);
 		$order_date		= date("Y-m-d", strtotime( $order_date[1] ));
 
 		if (!isset($no_of_indvdl[1])) {
@@ -30,8 +30,8 @@
 
 
 	// Insert into database
-		$sql = "INSERT INTO order_48 (order_date,orderer,email_subject,location,receive_date,no_of_indvdl,no_of_comp,reply_to,reply_cc)
-					VALUES ('$order_date','$orderer[1]','$email_subject','$location','$receive_date',$no_of_indvdl[1],$no_of_comp[1],'$reply_to','$reply_cc')";
+		$sql = "INSERT INTO order_48 (order_date,orderer,email_subject,location,receive_date,no_of_indvdl,no_of_comp,reply_to,reply_cc,uploader)
+					VALUES ('$order_date','$orderer[1]','$email_subject','$location','$receive_date',$no_of_indvdl[1],$no_of_comp[1],'$reply_to','$reply_cc',".$_SESSION['user']['id'].")";
 		$run = $conn->query($sql);
 		$id 			= $conn->insert_id;
 
@@ -58,15 +58,12 @@
 		$run = $conn->query($sql);
 
 	// Upload to folder
-		$folder			= 'docs/amla/' . substr($_POST['email-date'],6,4) .'/'. substr($_POST['email-date'],3,2) .'/'. substr($_POST['email-date'],0,2) .'/'. $id .'/';
+		$folder			= 'docs/amla/ORDER/' . substr($_POST['email-date'],6,4) .'/'. substr($_POST['email-date'],3,2) .'/'. substr($_POST['email-date'],0,2) .'/'. $id .'/';
 		make_directory($folder);
-
-		// Upload email
-		move_uploaded_file($_FILES['email']['tmp_name'], $folder.'1 - '.$_FILES['email']['name']);
 
 		// Upload attachment
 		for ($i=0; $i < count($_FILES['attachment']['name']); $i++) { 
-			move_uploaded_file($_FILES['attachment']['tmp_name'][$i], $folder.'2 - '.$_FILES['attachment']['name'][$i]);
+			move_uploaded_file($_FILES['attachment']['tmp_name'][$i], $folder.'1 - '.$_FILES['attachment']['name'][$i]);
 		}
 
 

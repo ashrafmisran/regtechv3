@@ -21,10 +21,10 @@
 
 				<div class="row mb-1">
 					<div class="col-md-3">
-						<label>Email</label>
+						<label>Title</label>
 					</div>
 					<div class="col-md-9">
-						<input type="file" name="email" class="form-control" accept=".msg">
+						<input type="text" name="title" class="form-control">
 					</div>
 				</div>
 

@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "ashrafmisran";
+$password = "Yerz#403";
 $db = "compliance_review";
 
 // Create connection
