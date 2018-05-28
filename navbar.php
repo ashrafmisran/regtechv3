@@ -8,7 +8,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li> 
+      </li> <!-- 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           ML/CFT
@@ -30,13 +30,13 @@
           <a class="dropdown-item" href="#">Holiday</a>
           <a class="dropdown-item" href="#">Shariah Compliant Securities List</a>
         </div>
-      </li>
+      </li> -->
+      <?php if(isset($_SESSION['user'])){ ?>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="action-logout.php">Logout</a>
+        </li>
+      <?php } ?>
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0" action="?p=search" method="post">
-      <select id="search" class="select2 mr-sm-2 mx-2 w-100 form-control form-control-lg" type="search" aria-label="Search" name="s" onkeydown="get_suggestions()">
-      </select>
-      <button class="btn btn-outline-success btn-sm my-2 ml-2 my-sm-0" type="submit">Search record</button>
-    </form> -->
   </div>
 </nav>
 <hr class="mt-0">

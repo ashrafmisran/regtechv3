@@ -4,18 +4,6 @@
 *.msg
 *.eml
 *.xls
-<<<<<<< HEAD
-*.pdf
-*.pdf
-*.pdf
-=======
-*.msg
-*.pdf
-*.xlsx
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> Upload-report
 *.doc
-docs/amla/DRAFT/Section 48 AMLATFPUAA 2001 
-docs/amla/DRAFT/Section 21 DDFOPA 1988 
+connect.php
+docs/*

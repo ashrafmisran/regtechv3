@@ -1,9 +1,3 @@
-<?php 
-    $_SESSION['user']['fullname']       = 'Muhammad Ashraf bin Misran';
-    $_SESSION['user']['position']       = 'Compliance Executive';
-    $_SESSION['user']['phone']          = '603-2613 1626';
-    $_SESSION['user']['email']          = 'm.ashraf@bimbsec.com.my';
-?>
 <!doctype html>
 <html lang="en">
   <head>
