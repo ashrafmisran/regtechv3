@@ -13,6 +13,7 @@
 	    $_SESSION['user']['position']       = $row['position'];
 	    $_SESSION['user']['phone']          = $row['phone'];
 	    $_SESSION['user']['email']          = $row['email'];
+	    $_SESSION['user']['role']          	= $row['role'];
 	}else{
 		$_SESSION['noti'] = '<p class="text-danger">Your username/password is not correct. Please re-try.</p>';
 	}
