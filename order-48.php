@@ -21,14 +21,16 @@
 	  				<th>Inquirer</th>
 	  				<th>Indv</th>
 	  				<th>Comp</th>
-	  				<th>Files</th>
 	  				<th>Remark</th>
+	  				<th>Uploader</th>
 	  				<th>Status</th>
+	  				<th>Replier</th>
+	  				<th>Files</th>
 	  				<th>Action</th>
 	  			</tr>
 	  		</thead>
 	  		<tbody>
-		  	<?php $i = 1; $run = $conn->query('SELECT * FROM order_48 WHERE status <> "Deleted" ORDER BY order_id DESC'); while ( $row = $run->fetch_assoc() ){ ?>
+		  	<?php $i = 1; $run = $conn->query('SELECT *,(SELECT name FROM users WHERE id = order_48.uploader) AS uploader_name,(SELECT name FROM users WHERE id = order_48.replier) AS replier_name FROM order_48 WHERE status <> "Deleted" ORDER BY order_id DESC'); while ( $row = $run->fetch_assoc() ){ ?>
 		  		<tr>
 		  			<th><?php echo $i ?></th>
 	  				<td>ORD<?php echo 10000+$row['order_id'] ?></td>
@@ -37,7 +39,11 @@
 	  				<td><?php echo $row['orderer'] ?></td>
 	  				<td><?php echo $row['no_of_indvdl'] ?> person(s)</td>
 	  				<td><?php echo $row['no_of_comp'] ?> comp(s)</td>
-	  				<td width="165px">
+	  				<td><?php echo $row['remark'] ?></td>
+	  				<td><?php echo $row['uploader_name'] ?></td>
+	  				<td><?php echo $row['status'] ?></td>
+	  				<td><?php echo $row['replier_name'] ?></td>
+	  				<td width="165px" class="bg-warning">
 	  					<select class="form-control form-control-sm" onchange="window.open(this.value,'_blank')">
 							<option selected disabled>Choose to view...</option>
 							<?php 
@@ -47,9 +53,7 @@
 							<?php } ?>
 						</select>
 	  				</td>
-	  				<td><?php echo $row['remark'] ?></td>
-	  				<td><?php echo $row['status'] ?></td>
-	  				<td width="150px">
+	  				<td width="150px" class="bg-warning">
 	  					<a class="btn btn-sm btn-outline-primary has-tooltip" href="generate-reply-email.php?to=<?php echo $row['reply_to'] ?>&cc=<?php echo $row['reply_cc'] ?>&subject=<?php echo urlencode( str_replace(':', '', $row['email_subject']) ) ?>&emaildate=<?php echo $row['receive_date'] ?>" title="Download draft email"><i class="fas fa-download"></i></a>
 	  					<button class="btn btn-sm btn-outline-primary has-tooltip" data-toggle="modal" title="Upload replied email" data-target="#modal-upload-replied-email" data-id="ORD<?php echo 10000+$row['order_id']; ?>" data-email-date="<?php echo $row['receive_date']; ?>""><i class="fas fa-upload"></i></button>
 	  					<button class="btn btn-sm btn-outline-danger has-tooltip" data-toggle="modal" title="Delete order" data-target="#modal-delete-order-<?php echo $row['order_id'] ?>"><i class="fas fa-trash-alt"></i></button>
@@ -95,9 +99,9 @@
 	  				<th class="text-center">Order(s)</th>
 	  				<th class="text-center">Status</th>
 	  				<th class="text-center">Report File</th>
-	  				<th class="text-center">Processor</th>
 	  				<th class="text-center">Remark by Officer</th>
-	  				<th class="text-center">Checker</th>
+	  				<th class="text-center">Processor</th>
+	  				<th class="text-center">Verifier</th>
 	  				<th class="text-center">HOD</th>
 	  				<th class="text-center">Remark by HOD</th>
 	  			</tr>
@@ -119,17 +123,15 @@
 		  			</td>
 		  			<td class="text-center"><?php echo $row['status'] ?></td>
 		  			<td class="text-center"><a href="docs/amla/REPORT/<?php echo $row['report_date'] ?>.pdf" target="_blank"><i class="fas fa-file text-warning"></i></a></td>
-		  			<td width="200px">
+		  			<td class="text-center"><?php echo $row['remark'] ?></td>
+		  			<td width="150px">
 
-		  				<button class="btn btn-sm btn-outline-primary has-tooltip" data-toggle="modal" title="No exception" data-target="#modal-submit-report-<?php echo $row['id'] ?>"><i class="fas fa-check"></i></button>
-	  					<button class="btn btn-sm btn-outline-danger has-tooltip" data-toggle="modal" title="Exception" data-target="#modal-delete-report-<?php echo $row['id'] ?>"><i class="fas fa-times"></i></button>
 	  					<button class="btn btn-sm btn-outline-primary has-tooltip" data-toggle="modal" title="Submit report to colleague for checking" data-target="#modal-submit-report-<?php echo $row['id'] ?>"><i class="fas fa-share-square"></i></button>
 	  					
 	  					<button class="btn btn-sm btn-outline-primary has-tooltip" data-toggle="modal" title="Submit report to HOD" data-target="#modal-submit-report-<?php echo $row['id'] ?>"><i class="fas fa-share-square"></i></button>
 	  					<button class="btn btn-sm btn-outline-danger has-tooltip" data-toggle="modal" title="Delete report" data-target="#modal-delete-report-<?php echo $row['id'] ?>"><i class="fas fa-trash-alt"></i></button>
 
 	  				</td>
-		  			<td class="text-center"><?php echo $row['remark'] ?></td>
 		  			<td>
 		  				<button class="btn btn-sm btn-outline-primary has-tooltip" data-toggle="modal" title="Checked" data-target="#modal-submit-report-<?php echo $row['id'] ?>"><i class="fas fa-check"></i></button>
 	  					<button class="btn btn-sm btn-outline-warning has-tooltip" data-toggle="modal" title="Return report to colleague for re-processing" data-target="#modal-delete-report-<?php echo $row['id'] ?>"><i class="fas fa-reply"></i></button>
@@ -139,7 +141,7 @@
 	  					<button class="btn btn-sm btn-outline-danger has-tooltip" data-toggle="modal" title="Exception" data-target="#modal-delete-report-<?php echo $row['id'] ?>"><i class="fas fa-times"></i></button>
 	  					<button class="btn btn-sm btn-outline-warning has-tooltip" data-toggle="modal" title="Return report to Officer for re-processing" data-target="#modal-delete-report-<?php echo $row['id'] ?>"><i class="fas fa-reply"></i></button>
 	  				</td>
-	  				<td class="text-center"><?php echo $row['remark'] ?></td>
+	  				<td class="text-center"><?php echo $row['remark_hod'] ?></td>
 		  		</tr>
 
 

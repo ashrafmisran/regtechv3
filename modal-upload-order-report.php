@@ -43,7 +43,7 @@
 						<label>Remark</label>
 					</div>
 					<div class="col-md-9">
-						<textarea class="form-control" name="remark"></textarea>
+						<textarea class="form-control" name="remark">No exception</textarea>
 					</div>
 				</div>
 			</div>
