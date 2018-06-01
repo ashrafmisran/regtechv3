@@ -20,6 +20,7 @@
 						  preg_match('/([0-9]*)\sindividual/', $_POST['title'], $no_of_indvdl);
 						  preg_match('/([0-9]*)\scompa/', $_POST['title'], $no_of_comp);
 		$order_date		= date("Y-m-d", strtotime( $order_date[1] ));
+		$remark			= $_POST['remark'];
 
 		if (!isset($no_of_indvdl[1])) {
 			$no_of_indvdl[1]= 0;
@@ -30,8 +31,8 @@
 
 
 	// Insert into database
-		$sql = "INSERT INTO order_48 (order_date,orderer,email_subject,location,receive_date,no_of_indvdl,no_of_comp,reply_to,reply_cc)
-					VALUES ('$order_date','$orderer[1]','$email_subject','$location','$receive_date',$no_of_indvdl[1],$no_of_comp[1],'$reply_to','$reply_cc')";
+		$sql = "INSERT INTO order_48 (order_date,orderer,email_subject,location,receive_date,no_of_indvdl,no_of_comp,remark,reply_to,reply_cc,uploader)
+					VALUES ('$order_date','$orderer[1]','$email_subject','$location','$receive_date',$no_of_indvdl[1],$no_of_comp[1],'$remark','$reply_to','$reply_cc',".$_SESSION['user']['id'].")";
 		$run = $conn->query($sql);
 		$id 			= $conn->insert_id;
 

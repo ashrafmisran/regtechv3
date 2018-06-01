@@ -6,7 +6,7 @@
 	/*$subject	= */  preg_match('/(Section.*)/', urldecode($_GET['subject']), $subject);
 	/*$replyTo = */   preg_match('/(Order dated.*)/', urldecode( $_GET['subject'] ), $replyTo);
 	$orderReceived 	= $_GET['emaildate'];
-	$senderName		= $_SESSION['user']['fullname'];
+	$senderName		= $_SESSION['user']['name'];
 	$senderPosition	= $_SESSION['user']['position'];
 	$senderTel		= $_SESSION['user']['phone'];
     $senderEmailAdd = $_SESSION['user']['email'];

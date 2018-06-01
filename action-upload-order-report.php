@@ -1,9 +1,5 @@
 <?php
-	session_start();
-	include 'connect.php';
 	include 'function.php';
-	var_dump($_FILES);
-	var_dump($_POST);
 	
 	// Set the variable
 	$report_date = $_POST['report-date'];
@@ -20,7 +16,7 @@
 	move_uploaded_file($_FILES['report']['tmp_name'], $folder. $filename);
 
 	// Insert into order_48_report table
-	$sql = "INSERT INTO order_48_report (report_file,order_id,report_date,remark,status) VALUES ('$filename','$order_id','$report_date','$remark','$status')";
+	$sql = "INSERT INTO order_48_report (report_file,order_id,report_date,remark,status,processor) VALUES ('$filename','$order_id','$report_date','$remark','$status',".$_SESSION['user']['id'].")";
 	$run = $conn->query($sql);
 	
 	if ($run != FALSE) {

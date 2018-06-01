@@ -1,9 +1,3 @@
-<?php 
-    $_SESSION['user']['fullname']       = 'Muhammad Ashraf bin Misran';
-    $_SESSION['user']['position']       = 'Compliance Executive';
-    $_SESSION['user']['phone']          = '603-2613 1626';
-    $_SESSION['user']['email']          = 'm.ashraf@bimbsec.com.my';
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,5 +25,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     
+    <style type="text/css">
+        body {
+            zoom: 75%; /*Zoom out*/
+        }
+    </style>
+
   </head>
   <body>

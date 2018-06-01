@@ -1,10 +1,21 @@
 <?php
-	session_start(); 
-	include 'connect.php';
 	include 'function.php';
+	include 'connect.php';
 	include 'head.php';
 	include 'navbar.php';
-	include 'order-48.php';
+	if ( isset($_SESSION['user']) ){
+		if(isset($_GET['p'])){
+			include 'view-'.$_GET['p'].'.php';
+		}else{
+			include 'view-home.php';
+		}
+	}else{
+		if (isset($_GET['p'])) {
+			include 'view-'.$_GET['p'].'.php';
+		}else{
+			include 'view-login.php';
+		}
+	}
 	
 	include 'footer.php';
 ?>

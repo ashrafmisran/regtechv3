@@ -17,48 +17,6 @@ $('#tab-amla-report').find('a').click(function(event) {
 
 
 
-// Enable click on table row to checked/unchecked the checkbox
-$('#order-tab,#report-tab').find('tr').click(function() {
-    var checkbox = $(this).find('.checkbox');
-    checkbox.prop('checked', !checkbox.prop("checked")); // Toggle the check-uncheck
-    checkbox.parent().parent().parent().parent().find('#select-all-orders,#select-all-reports').prop('checked', false) // Uncheck select all
-
-    var table_name = $(this).parent().parent().parent().attr('id');
-    if (table_name == 'order-tab') {
-        check(checkbox, selectedOrder);
-
-        /*Followed by updating the
-        generate email btn url*/
-        var row = $('#order-tab').find('.checkbox[value="'+selectedOrder[0]+'"]').parent().parent();
-        var subject            = row.find('td:nth-child(5)').text();
-        var orderreceiveddate  = row.find('td:nth-child(6)').text();
-        var to                 = row.find('td:nth-child(11)').text();
-        var cc                 = row.find('td:nth-child(12)').text();
-        // Re-format
-        
-        var generateEmailURL = 'generate-reply-email.php?to='+to+'&cc='+cc+'&subject='+subject+'&orderreceiveddate='+orderreceiveddate;
-
-        $('#generate-email-btn').prop('href', generateEmailURL);
-
-        // Disable generate email button if more than 1 order selected or no row selected
-        if( typeof selectedOrder[1] !== 'undefined' || typeof selectedOrder[0] == 'undefined' ){
-            $('#generate-email-btn').addClass('disabled');
-        }else{
-            $('#generate-email-btn').removeClass('disabled');
-        }
-
-        // Disable process and delete order button if more than 1 order selected or no row selected
-        if( typeof selectedOrder[0] == 'undefined' ){
-            $('#process-order-btn, #remove-order-btn').addClass('disabled');
-        }else{
-            $('#process-order-btn, #remove-order-btn').removeClass('disabled');
-        }
-
-    } else if (table_name == 'report-tab') {
-        check(checkbox, selectedReport);
-    }
-    
-})
 
 // Set value for order ID from received email date
 function updateId(){

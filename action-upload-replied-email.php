@@ -1,6 +1,4 @@
 <?php
-	session_start();
-	include 'connect.php';
 	include 'function.php';
 
 	/*echo '<textarea style="width:100%;height:800px">';
@@ -15,7 +13,7 @@
 		$email_date 	= $_POST['email-date'];
 
 	// Update database
-		$sql = "UPDATE order_48 SET status = 'Replied' WHERE order_id = $order_id";
+		$sql = "UPDATE order_48 SET status = 'Replied', replier = ".$_SESSION['user']['id']."  WHERE order_id = $order_id";
 		$run = $conn->query($sql);
 
 	// Upload to folder
